@@ -1,16 +1,57 @@
-# React + Vite
+# Ancient Life
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Ancient Life has a React website and a separate Node.js API:
 
-Currently, two official plugins are available:
+- `frontend/src/components/` contains reusable interface pieces, including
+  `AnimalCard.jsx`, which displays each species.
+- `frontend/src/pages/` contains the Home, Explore, About, and not-found pages.
+- `frontend/src/App.jsx` connects the pages to the API and handles loading.
+- `frontend/src/` also contains the app entry point and global styles.
+- `backend/` contains the API and the species catalog in `backend/data/animals.json`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Run the project
 
-## React Compiler
+1. Install [Node.js](https://nodejs.org/) if it is not already installed.
+2. From this project folder, install the project packages:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+   ```sh
+   npm install
+   ```
 
-## Expanding the Oxlint configuration
+3. Open two terminals in this project folder. In the first, start the backend:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+   ```sh
+   npm run dev:backend
+   ```
+
+4. In the second terminal, start the website:
+
+   ```sh
+   npm run dev
+   ```
+
+5. Open the website at <http://localhost:5173>.
+
+The frontend sends API requests through Vite to the backend at
+<http://127.0.0.1:3000>. You can check that the backend is running at
+<http://127.0.0.1:3000/api/health>.
+
+## API endpoints
+
+- `GET /api/health` checks that the backend is running.
+- `GET /api/animals` lists all species.
+- `GET /api/animals?q=cambrian` searches species by name, period, and details.
+- `GET /api/animals/1` returns one species by its ID.
+
+The species catalog is currently stored as a JSON file, so you can edit the
+entries in `backend/data/animals.json` without setting up a database. This
+starter backend is read-only; it does not yet include accounts or an admin
+editor.
+
+## Checks
+
+```sh
+npm run test:backend
+npm run lint
+npm run build
+```

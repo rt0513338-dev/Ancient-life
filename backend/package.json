@@ -1,0 +1,10 @@
+{
+  "name": "ancient-life-backend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch server.js",
+    "start": "node server.js",
+    "test": "node --test"
+  }
+}
